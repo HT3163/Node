@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: darkblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+        .tweet {
+            position: relative;
+            top: -45px;
+            left: 60px;
+        }
+        img {
+            background: skyblue;
+            height: 100px;
+            width: 100px;
+            float: right;
+            transform: rotate(-40deg)   
+        }
+
+
+        .container {
+            background: blue;
+            height: 400px;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: whitesmoke;
+            height: 200px;
+            width: 400px;
+            overflow: hidden;
+        }
+
+        .para {
+            margin: 70px 0px 0px 20px;
+        }
+
+        .butt {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 56px;
+            outline: none;
+        }
+
+        #btn {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <div class="container">
+        <div class="box">
+
+            <div class="tweet">
+                <a href="" id="tweetMe">
+                    <div></div>
+                    <img src="logo.png" alt="">
+                </a>
+            </div>
+
+            <div class="para">
+                <p id="quotes">The moment one gives close attention to anything, even a blade of grass, it becomes a
+                    mysterious, awesome, indescribably magnificent world in itself.</p>
+                <author id="author">Hamza'ch</author>
+            </div>
+
+            <div class="butt">
+                <button id="btn">New Quotes</button>
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="container">
+        <div class="box">
+
+            <div class="tweet">
+                <a href="" id="tweetMe"><img src="logo.png" alt="" style="height: 100px; width: 100px;"></a>
+            </div>
+            
+            <div class="para">
+                <p id="quotes"></p>
+                <author id="author"></author>
+            </div>
+            
+            <div class="butt">
+                <button id="btn">new Quotes</button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        const quotes = document.getElementById("quotes");
+        const author = document.getElementById("author");
+        const tweetMe = document.getElementById("tweetMe");
+        const btn = document.getElementById("btn");
+        let realData = "";
+        let quotesData = "";
+        const tweetNow = () => {
+            // let tweetPost = `https://twitter.com/intent/tweet?text=${quotesData.text}`;   //For twitter
+            let tweetPost = `https://api.whatsapp.com/send/?phone=9203096385271&text=${quotesData.text}`;  //For Whatsapp
+            window.open(tweetPost);
+        }
+
+        const getNewQuotes = () => {
+            let rNum = Math.floor(Math.random() * 1643); //random number formular give number b/w 0 and 1
+            quotesData = realData[rNum];
+            quotes.innerHTML = `${realData[rNum].text}`;
+            quotesData.author == null ? author.innerHTML = "unKnow" : author.innerHTML = `${realData[rNum].author}`;
+        }
+
+        const getQuotes = async () => {
+            const api = "https://type.fit/api/quotes";
+            try {
+                let data = await fetch(api);
+                realData = await data.json();
+                getNewQuotes();
+            } catch (error) { }
+        };
+
+        tweetMe.addEventListener('click', tweetNow)     //remember that not write tweetNow()
+        btn.addEventListener('click', getQuotes)     //remember that not write tweetNow()
+
+    </script>
+
+</body>
+
+</html>

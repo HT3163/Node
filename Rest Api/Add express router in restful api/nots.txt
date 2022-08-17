@@ -1,0 +1,2 @@
+in this router folder i will used express router 
+the benifit of express router we make separate file of get,post,.. etc file to make our code more beautiful

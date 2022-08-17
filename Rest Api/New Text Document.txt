@@ -1,0 +1,21 @@
+//can be used to delete document from database
+app.patch('/students/:id', async(req, res) => {
+
+  try{
+    const _id = req.params.id;    //params can be used to get url data if someone enter in the url
+    console.log(_id);
+    const user = new Student(req.body);
+    console.log(user);
+
+    const updateStudents = await Student.findByIdAndUpdate(_id, req.body, {
+      new:true
+    }); 
+    console.log(updateStudents)
+
+    res.send(updateStudents);
+
+  }catch(e){
+    res.status(400).send(e);
+  }
+
+})

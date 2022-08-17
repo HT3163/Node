@@ -1,0 +1,148 @@
+mongoose: it helps us to established a connection b/w nodejs and mongodb
+
+first of all start mongodb in powershell admin
+
+mongod              //use to start mongod 
+mongo               //use to run mongo command prompt
+show dbs           //use to check all data base
+db                     //use to check working data base
+use hamza        //make automatically new data base with hamza name
+show dbs          //empty database hamza not use in output because minimun one obj is required to see your database
+db.hamza.insert({"name":"HamzaTahir"})      //insert name in data base
+show dbs          //show database hamza
+show collections    //use to get collections from data base
+
+
+db.items.insertOne({"name":"HamzaTahir"})   //insert one object          //items is a collection not database remember that
+db.items.insertMany([{"name":"Hamza",Roll:4301},({"Fname":"Tahir"}])   //insert Many Object
+db.items.find()    //display all object from data base      //not show obj in formate way
+db.items.find().pretty()        // show obj in formate way
+
+ctrl + d     OR   quite()         //to stop mongo  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MongoDB CRUD Operation        //CRUD means create,read,update,delete
+
+
+////////////Inserting data in mongodb//////////
+
+// use hamzaKart
+// This below line can be used to insert one object 
+db.items.insertOne({name: "Samsung 30s",price: 22000,rating: 4.5,qty: 233, sold: 98})  //this items is called collections
+
+// This below line can be used to insert Many object 
+db.items.insertMany([{"A":1,"B":2},{"C":3,"D":4},{"E":5,"F":6}])    //not compulsory to wirte double quote in A,B.. etc
+
+
+/////////////Searing data in mongodb///////////////
+
+// use hamzaKart
+
+SYNTAX:  db.collection_name.find(query,projection)
+
+db.items.find()                 //find all objects
+db.qasim.find().limit(3)       //if 0 display all obj, if 1 display first obj ... so on.
+db.qasim.find().limit(1).skip(1)    //skip obj 1 and display next 1 obj
+db.qasim.find({"A":1})        //OUTPUT:  { "_id" : ObjectId("61883f656ead3d885b30ef99"), "A" : 1, "B" : 2 }
+db.qasim.find({"B":{$gte:1}})    //gte means >=       OUTPUT:  { "_id" : ObjectId("61883f656ead3d885b30ef99"), "A" : 1, "B" : 2 }
+db.items.find({"A": {$gt: 1}})     //gt means >
+db.items.find({"A": {$lt: 4}})     //gt means <           OUTPUT:  { "_id" : ObjectId("61883f656ead3d885b30ef99"), "A" : 1, "B" : 2 }
+
+// ___________And operator
+db.items.find({rating: {$gt: 3.5}, price:{$gt: 4000}})
+
+db.items.find({rating: {$lt: 3.5}, price:{$gt: 114000}})   //lt means <
+
+// __________OR operator
+db.items.find({
+    $or:[{rating: {$lt: 3.5}}, {price:{$gt: 114000}}] 
+})
+
+
+
+db.qasim.find({"A":1},{A:1})    //get only one field   OUTPUT: { "_id" : ObjectId("61883f656ead3d885b30ef99"), "A" : 1 }
+db.qasim.find({"A":1},{"A":0})  //if write 0 than display all field except "A" field     OUTPUT: { "_id" : ObjectId("61883f656ead3d885b30ef99"), "B" : 2, "Z" : 27, "price" : 3, "rating" : 1 }
+db.qasim.find({"C":3},{"C":3})    //get only one field   OUTPUT: { "_id" : ObjectId("61883f656ead3d885b30ef99"), "C" : 3 }    //but how to remove _id so see below code
+
+db.qasim.find({"A":1},{_id:0,A:1})    //remove _id         OUTPUT: {"A":1}
+
+
+////////Delete object////////
+// show dbs 
+// use hamzaKart
+// show collections
+
+db.items.find({price: 22000})
+
+// Deleting items from the Mongo Database
+db.items.deleteOne({price: 22000})        //they delete whole object even we delete only one value in this object REMEMBER THAT!
+// deleteOne will delete the matching document entry and will delete the first entry in case of multi document match
+db.items.deleteMany({price: 129000})
+
+
+/////////Updata object//////////
+
+syntax: db.collection_name.updateOne(filter,update)
+
+// show dbs 
+// use harryKart
+// show collections
+
+db.qasim.updateOne({A:1},{$set: {A:22}})   //update work
+db.items.updateMany({name: "Moto 30s"}, {$set: {price: 3, rating: 1}})
+db.qasim.deleteMany({})  //delete all obj
