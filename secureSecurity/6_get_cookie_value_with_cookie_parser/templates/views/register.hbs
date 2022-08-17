@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{>header}}
+	<title>contact us</title>
+</head>
+<body>
+    {{>navbar}}
+	<div class="container">
+		<div class="box">
+			<div class="mid">
+				<h1>Contact Us</h1>
+                <form action="/register" method="post">
+				    <input type="text" name="firstname" class="field" placeholder="First Name">
+				    <input type="text" name="lastname" class="field" placeholder="Last Name">
+				    <input type="email" name="email" class="field" placeholder="E-mail">
+				    <input type="password" name="password" class="field" placeholder="password">
+				    <input type="password" name="repassword" class="field" placeholder="Re-password">
+				    <input type="text" name="phone" class="field" placeholder="Phone">
+				    <textarea name="textarea" class="field" style="min-height: 140px;" placeholder="No more than 300 characters"></textarea>
+				    <input type="submit" value="Send Now" class="btn">
+                </form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background: url('a2.jpg') no-repeat center center/cover; */
+    background-color: rgb(159, 236, 148);
+    background-attachment: fixed;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.95;
+}
+
+.SignIn{
+    width: 450px;
+    min-height: 500px;
+    height: auto;
+    border-radius: 5px;
+    margin: 3% auto;
+    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.966);
+    padding: 2%;
+}
+/* form Container */
+.SignIn .set {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* the header form form */
+header {
+    margin: 2% auto 10% auto;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+/* Login title form form */
+header h2 {
+    font-size: 250%;
+}
+
+/* inputs css  */
+input[class="f-input"]{
+    width: 280px;
+    height: 50px;
+  
+    margin-top: 3%;
+    padding: 15px;
+    
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: #5E6472;
+  
+    outline: none;
+    border: none;
+  
+    border-radius: 0px 10px 0px 10px;
+    transition: 0.2s linear;
+    
+}
+input:hover{
+    transform: translateY(-5px);
+    border-radius: 5px;
+    background-color: rgb(100, 148, 237);
+    color: rgb(255, 255, 255);
+}
+/* button css */
+button {
+    display: inline-block;
+    color: #252537;
+    width: 280px;
+    height: 50px;
+    padding: 0 20px;
+    background: #fff;
+    border-radius: 0px 10px 0px 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s linear;
+    margin: 7% auto;
+    letter-spacing: 0.05em;
+}
+button:hover{
+    transform: translateY(5px);
+    border-radius: 5px;
+    background-color: rgb(100, 148, 237);
+    color: rgb(255, 255, 255);
+}
+
+/* Submits */
+.submits {
+    width: 48%;
+    display: inline-block;
+    float: left; 
+    margin-left: 2%;
+}
+
+/* resposive login page */
+@media only screen and (min-width: 200px) and (max-width:700px){
+    form {
+        margin-top: 40%;
+    }
+}
